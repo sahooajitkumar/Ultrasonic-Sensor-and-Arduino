@@ -1,6 +1,7 @@
 //--------------------------------------------------------Ajit Kumar Sahoo------------------------------------------------------------------------------------------------------------
 //Devices: Ulrasonic sensor  HC-SR04 (range 2cm---400cm ),Temp and Humidity DHT-22  and Arduino microcontroller
 //The program consider temp and humidity values while  calculating distacne to compensate environmental effects
+//the millis() or micros() function is used to measure the execution time.(for better resoltion use micros():
 //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Include DHT Libraries from Adafruit
 // Dependant upon Adafruit_Sensors Library
@@ -36,6 +37,7 @@ void setup() {
 
 void loop()
 {
+// unsigned long start = micros();//use if you want to measure execution time
   humidity = dht.readHumidity();  // Get Humidity value
   temp= dht.readTemperature();  // Get Temperature value
   float   p = 101325;  //pressure is the standard atmospheric pressure (Pa)
@@ -90,7 +92,11 @@ distance = (duration / 2) * soundcm; // Calculate the distance
     Serial.print(" cm");
 
    }
-      delay(2000);  // delay to stabilize the sensors
+// unsigned long end = micros(); //to measure exectuion time
+//unsigned long delta = end - start; //to measure exectuion time
+//Serial.println(delta);//dispaly the execution time
+ 
+  delay(2000);  // delay to stabilize the sensors
   Serial.println(" ");
 }
 
